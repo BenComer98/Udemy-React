@@ -6,12 +6,40 @@ function App() {
     const [books, setBooks] = useState([]);
 
     // Event handlers
-    const createBook = (title) => {
-        console.log('Need to add book with:', title);
+    const addBook = (title) => {
+        setBooks([...books, {
+            id: Math.round(Math.random() * 9999),
+            title,
+        }]); // title is the same as "title: title"
+    };
+
+    const deleteBookById = (id) => {
+        console.log("Deleting id: ", {id});
+        setBooks(
+            books.filter((book, index) => {
+                return book.id !== id;
+            })
+        );
     }
 
-    return <div>
-        <BookCreate onCreate={createBook}/>
+    const editBookById = (id, newTitle) => {
+        console.log("Editing id: ", {id});
+        setBooks(
+            books.map((book) => {
+                if (book.id === id)
+                    return {...book, title: newTitle};
+                else
+                    return book;
+
+                
+            })
+        );
+    }
+
+    return <div className="app">
+        <h1>Reading List</h1>
+        <BookList books={books} onDelete={deleteBookById} onEdit={editBookById}/>
+        <BookCreate onCreate={addBook}/>
     </div>;
 }
 
