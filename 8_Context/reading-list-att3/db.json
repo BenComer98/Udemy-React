@@ -1,3 +1,12 @@
 {
-  "books": []
+  "books": [
+    {
+      "title": "HP",
+      "id": 1
+    },
+    {
+      "title": "Dark Souls",
+      "id": 2
+    }
+  ]
 }
